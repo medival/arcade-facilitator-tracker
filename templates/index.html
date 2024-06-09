@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qwiklabs Badge Checker</title>
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Additional custom styles here */
+    body {
+      background-color: #f8f9fa;
+      padding-top: 50px;
+    }
+
+    .btn-start {
+      width: 100%;
+    }
+
+    #cloudResults,
+    #aiResults {
+      margin-top: 20px;
+    }
+
+    #arcade_logo {
+      width: 10vw;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <img src="https://i.ibb.co.com/sVMngs3/arcade-email-mobile-header-transparent.png" alt=""
+      class="d-block mx-auto mb-4" id="arcade_logo">
+    <h2 class=" text-center mb-4">Google Arcade Facilitator Tracker</h2>
+    <form method="post" enctype="application/x-www-form-urlencoded">
+      <div class="mb-3">
+        <label for="input_public_profile" class="form-label">Qwiklabs Public Profile</label>
+        <input type="text" class="form-control" id="input_public_profile" name="profileUrl" required="required"
+          placeholder="https://www.cloudskillsboost.google/public_profiles/"></input>
+      </div>
+      <button type="submit" class="btn btn-primary btn-start mb-4">Start</button>
+    </form>
+
+    {% if profile_url %}
+    {% for tier_result, tier_color in tier_results %}
+    <div id="tierResults">
+      <div class="alert alert-{{ tier_color }}" role=" alert">
+        Your public url: {{ profile_url }} </br>
+        Total Points: {{ total_points}} </br>
+        {{ tier_result }}
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    {% if cloud_results %}
+    <div class="card" id="cloudResults">
+      <h5 class="card-header">Cloud Track: {{ cloud_points }} Points</h5>
+      <div class="">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Kind</th>
+              <th scope="col">Labs</th>
+              <th scope="col">Points</th>
+              <th scope="col">Completed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for badge_type, labs, badge_url, points, completed in cloud_results %}
+            <tr>
+              <td> {{ badge_type }} </td>
+              <td>
+                <a href="{{ badge_url }}" target="_blank"> {{ labs }} </a>
+              </td>
+              <td class="text-center"> {{ points }} </td>
+              <td class="text-center"> {{ completed }} </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if ai_results %}
+    <div class="card" id="aiResults">
+      <h5 class="card-header">AI Track: {{ ai_points }} Points</h5>
+      <div class="">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Kind</th>
+              <th scope="col">Labs</th>
+              <th scope="col">Points</th>
+              <th scope="col">Completed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for badge_type, labs, badge_url, points, completed in ai_results %}
+            <tr>
+              <td> {{ badge_type }} </td>
+              <td>
+                <a href="{{ badge_url }}" target="_blank"> {{ labs }} </a>
+              </td>
+              <td class="text-center"> {{ points }} </td>
+              <td class="text-center"> {{ completed }} </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Bootstrap JS CDN -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -68,7 +68,8 @@
     {% for error_message, error_color in errors %}
     <div id="tierResults">
       <div class="alert alert-{{ error_color }}" role=" alert">
-        Qwiklabs Public URL: {{ profile_url }} </br>
+        Qwiklabs Public URL <a href={{ profile_url }} target="_blank" rel="noopener noreferrer"> {{ profile_url }}
+        </a> </br>
         {{ error_message }}
       </div>
     </div>
@@ -79,7 +80,8 @@
     {% for tier_result, tier_color in tier_results %}
     <div id="tierResults">
       <div class="alert alert-{{ tier_color }}" role=" alert">
-        Qwiklabs Public URL {{ profile_url }} </br>
+        Qwiklabs Public URL <a href={{ profile_url }} target="_blank" rel="noopener noreferrer"> {{ profile_url }} </a>
+        </br>
         {% if cloud_bonus_points == 2.0 %}
         Cloud Points = {{ cloud_points }} + {{ cloud_bonus_points }} (Bonus) </br>
         {% else %}
@@ -113,8 +115,8 @@
 
     {% if cloud_results %}
     <div class="card" id="cloudResults">
-      <h5 class="card-header">Cloud Total Points: {{ cloud_points + cloud_bonus_points }} Points = Cloud Track Points:
-        {{ cloud_points }} + Cloud Bonus Points = {{ cloud_bonus_points }}</h5>
+      <h5 class="card-header">Cloud Total Points: {{ cloud_points + cloud_bonus_points }} = Cloud Track {{ cloud_points
+        }} Points + Cloud Bonus {{ cloud_bonus_points }} Points</h5>
       <div class="">
         <table class="table table-striped">
           <thead>
@@ -146,8 +148,8 @@
 
     {% if ai_results %}
     <div class="card mb-3" id="aiResults">
-      <h5 class="card-header">AI Total Points: {{ ai_points + ai_bonus_points }} Points = AI Track Points: {{ ai_points
-        }} + AI Bonus Points: {{ ai_bonus_points }}</h5>
+      <h5 class="card-header">AI Total Points: {{ ai_points + ai_bonus_points }} = AI Track {{ ai_points
+        }} Points + AI Bonus {{ ai_bonus_points }} Points </h5>
       <div class="">
         <table class="table table-striped">
           <thead>

@@ -66,12 +66,12 @@ def index():
 
         if status_code == 200:
             cloud_badges = [
-                ("Arcade Game", "Level 1: Security and Compliance (1q-secure-0545)", "Level 1: Security and Compliance", "https://www.cloudskillsboost.google/games/5058"),
-                ("Arcade Game", "Level 2: Data with BigQuery (1q-bigquery-0544)", "Level 2: Data with BigQuery", "https://www.cloudskillsboost.google/games/5057"),
-                ("Arcade Game", "Level 1: Cloud Networking (1q-networking-0631)", "Level 1: Cloud Networking", "https://www.cloudskillsboost.google/games/5156"),
-                ("Arcade Game", "Level 1: Cloud Networking (1q-deploy-0632)", "Level 2: Develop and Deploy", "https://www.cloudskillsboost.google/games/5155"),
-                ("Arcade Game", "Level 1: Arcade Juli - Coming Soon", "Level 1: Arcade Juli - Coming Soon", "https://www.cloudskillsboost.google/games/"),
-                ("Arcade Game", "Level 2: Arcade Juli - Coming Soon", "Level 2: Arcade Juli - Coming Soon", "https://www.cloudskillsboost.google/games/"),
+                ("Arcade Game", "Level 1 (May): Security and Compliance (1q-secure-0545)", "Level 1: Security and Compliance", "https://www.cloudskillsboost.google/games/5058"),
+                ("Arcade Game", "Level 2 (May): Data with BigQuery (1q-bigquery-0544)", "Level 2: Data with BigQuery", "https://www.cloudskillsboost.google/games/5057"),
+                ("Arcade Game", "Level 1 (June): Cloud Networking (1q-networking-0631)", "Level 1: Cloud Networking", "https://www.cloudskillsboost.google/games/5156"),
+                ("Arcade Game", "Level 1 (June): Cloud Networking (1q-deploy-0632)", "Level 2: Develop and Deploy", "https://www.cloudskillsboost.google/games/5155"),
+                ("Arcade Game", "Level 1 (July): Arcade Games - Coming Soon", "Level 1: Arcade Juli - Coming Soon", "https://www.cloudskillsboost.google/games/"),
+                ("Arcade Game", "Level 2 (July): Arcade Games - Coming Soon", "Level 2: Arcade Juli - Coming Soon", "https://www.cloudskillsboost.google/games/"),
                 ("Course", "Google Cloud Computing Foundations: Cloud Computing Fundamentals", "Google Cloud Computing Foundations: Cloud Computing Fundamentals", "https://www.cloudskillsboost.google/course_templates/153"),
                 ("Course", "Google Cloud Computing Foundations: Infrastructure in Google Cloud", "Google Cloud Computing Foundations: Infrastructure in Google Cloud", "https://www.cloudskillsboost.google/course_templates/154"),
                 ("Course", "Google Cloud Computing Foundations: Networking & Security in Google Cloud", "Google Cloud Computing Foundations: Networking & Security in Google Cloud", "https://www.cloudskillsboost.google/course_templates/155"),
@@ -87,9 +87,9 @@ def index():
             ]
 
             ai_badges = [
-                ("Arcade Game", "Level 3: GenAIus Registries (1q-deploy-0632)", "Level 3: GenAIus Registries", "https://www.cloudskillsboost.google/games/5060"),
-                ("Arcade Game", "Level 3: GenAIus Travels (1q-genai-0631)", "Level 3: GenAIus Travels", "https://www.cloudskillsboost.google/games/5154"),
-                ("Arcade Game", "Level 3: Coming Soon", "Level 3: Coming Soon", "https://www.cloudskillsboost.google/games/"),
+                ("Arcade Game", "Level 3 (May): GenAIus Registries (1q-deploy-0632)", "Level 3: GenAIus Registries", "https://www.cloudskillsboost.google/games/5060"),
+                ("Arcade Game", "Level 3 (June): GenAIus Travels (1q-genai-0631)", "Level 3: GenAIus Travels", "https://www.cloudskillsboost.google/games/5154"),
+                ("Arcade Game", "Level 3 (July): Coming Soon", "Level 3: Coming Soon", "https://www.cloudskillsboost.google/games/"),
                 ("Course", "Introduction to Generative AI", "Introduction to Generative AI", "https://www.cloudskillsboost.google/course_templates/536"),
                 ("Course", "Introduction to Large Language Models", "Introduction to Large Language Models", "https://www.cloudskillsboost.google/course_templates/539"),
                 ("Course", "Introduction to Responsible AI", "Introduction to Responsible AI", "https://www.cloudskillsboost.google/course_templates/554"),

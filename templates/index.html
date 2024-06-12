@@ -7,11 +7,23 @@
   <title>Qwiklabs Badge Checker</title>
   <!-- Bootstrap CSS CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sticky-footer/">
   <style>
     /* Additional custom styles here */
+    html,
     body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
       background-color: #f8f9fa;
       padding-top: 50px;
+    }
+
+    .container {
+      flex: 1;
     }
 
     .btn-start {
@@ -26,6 +38,15 @@
     #arcade_logo {
       width: 10vw;
     }
+
+    .footer {
+      background-color: #007BFF;
+      padding: 1rem 0;
+    }
+
+    a {
+      color: white;
+    }
   </style>
 </head>
 
@@ -33,7 +54,7 @@
   <div class="container">
     <img src="https://i.ibb.co.com/sVMngs3/arcade-email-mobile-header-transparent.png" alt=""
       class="d-block mx-auto mb-4" id="arcade_logo">
-    <h2 class=" text-center mb-4">Google Arcade Facilitator Tracker</h2>
+    <h2 class="text-center mb-4">Google Arcade Facilitator Tracker</h2>
     <form method="post" enctype="application/x-www-form-urlencoded">
       <div class="mb-3">
         <label for="input_public_profile" class="form-label">Qwiklabs Public Profile</label>
@@ -43,12 +64,47 @@
       <button type="submit" class="btn btn-primary btn-start mb-4">Start</button>
     </form>
 
+    {% if errors %}
+    {% for error_message, error_color in errors %}
+    <div id="tierResults">
+      <div class="alert alert-{{ error_color }}" role=" alert">
+        Qwiklabs Public URL: {{ profile_url }} </br>
+        {{ error_message }}
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
     {% if profile_url %}
     {% for tier_result, tier_color in tier_results %}
     <div id="tierResults">
       <div class="alert alert-{{ tier_color }}" role=" alert">
-        Your public url: {{ profile_url }} </br>
-        Total Points: {{ total_points}} </br>
+        Qwiklabs Public URL {{ profile_url }} </br>
+        {% if cloud_bonus_points == 2.0 %}
+        Cloud Points = {{ cloud_points }} + {{ cloud_bonus_points }} (Bonus) </br>
+        {% else %}
+        Cloud Points = {{ cloud_points }} </br>
+        {% endif %}
+
+        {% if ai_bonus_points == 4.0 %}
+        AI Points = {{ ai_points }} + {{ ai_bonus_points }} (Bonus) </br>
+        {% else %}
+        AI Points = {{ ai_points }} </br>
+        {% endif %}
+
+        {% if track_bonus_points != 0 and ai_bonus_points != 0 and cloud_bonus_points !=0 %}
+        Total Points: {{ cloud_points + ai_points + ai_bonus_points + cloud_bonus_points + track_bonus_points }} </br>
+
+        {% elif track_bonus_points == 0 and ai_bonus_points == 4.0 and cloud_bonus_points == 0 %}
+        Total Points: {{ cloud_points + ai_points + ai_bonus_points + cloud_bonus_points }} </br>
+
+        {% elif track_bonus_points == 0 and ai_bonus_points == 0 and cloud_bonus_points == 2.0 %}
+        Total Points: {{ cloud_points + ai_points + ai_bonus_points + cloud_bonus_points }} </br>
+
+        {% else %}
+        Total Points = {{ cloud_points + ai_points }} </br>
+        {% endif %}
+
         {{ tier_result }}
       </div>
     </div>
@@ -57,25 +113,28 @@
 
     {% if cloud_results %}
     <div class="card" id="cloudResults">
-      <h5 class="card-header">Cloud Track: {{ cloud_points }} Points</h5>
+      <h5 class="card-header">Cloud Total Points: {{ cloud_points + cloud_bonus_points }} Points = Cloud Track Points:
+        {{ cloud_points }} + Cloud Bonus Points = {{ cloud_bonus_points }}</h5>
       <div class="">
         <table class="table table-striped">
           <thead>
             <tr>
               <th scope="col">Kind</th>
               <th scope="col">Labs</th>
-              <th scope="col">Points</th>
-              <th scope="col">Completed</th>
+              <th class="text-center" scope="col">Points</th>
+              <!-- <th class="text-center" scope="col">Date Earned</th> -->
+              <th class="text-center" scope="col">Completed</th>
             </tr>
           </thead>
           <tbody>
-            {% for badge_type, labs, badge_url, points, completed in cloud_results %}
+            {% for badge_type, badge_label, badge_name, badge_url, points, completed in cloud_results %}
             <tr>
               <td> {{ badge_type }} </td>
               <td>
-                <a href="{{ badge_url }}" target="_blank"> {{ labs }} </a>
+                <a href="{{ badge_url }}" target="_blank"> {{ badge_label }} </a>
               </td>
               <td class="text-center"> {{ points }} </td>
+              <!-- <th class="text-center" scope="col"> {{ badge_time }} </th> -->
               <td class="text-center"> {{ completed }} </td>
             </tr>
             {% endfor %}
@@ -86,26 +145,29 @@
     {% endif %}
 
     {% if ai_results %}
-    <div class="card" id="aiResults">
-      <h5 class="card-header">AI Track: {{ ai_points }} Points</h5>
+    <div class="card mb-3" id="aiResults">
+      <h5 class="card-header">AI Total Points: {{ ai_points + ai_bonus_points }} Points = AI Track Points: {{ ai_points
+        }} + AI Bonus Points: {{ ai_bonus_points }}</h5>
       <div class="">
         <table class="table table-striped">
           <thead>
             <tr>
               <th scope="col">Kind</th>
               <th scope="col">Labs</th>
-              <th scope="col">Points</th>
-              <th scope="col">Completed</th>
+              <th class="text-center" scope="col">Points</th>
+              <!-- <th class="text-center" scope="col">Date Earned</th> -->
+              <th class="text-center" scope="col">Completed</th>
             </tr>
           </thead>
           <tbody>
-            {% for badge_type, labs, badge_url, points, completed in ai_results %}
+            {% for badge_type, badge_label, badge_name, badge_url, points, completed in ai_results %}
             <tr>
               <td> {{ badge_type }} </td>
               <td>
-                <a href="{{ badge_url }}" target="_blank"> {{ labs }} </a>
+                <a href="{{ badge_url }}" target="_blank"> {{ badge_label }} </a>
               </td>
               <td class="text-center"> {{ points }} </td>
+              <!-- <th class="text-center"> {{ badge_time }} </th> -->
               <td class="text-center"> {{ completed }} </td>
             </tr>
             {% endfor %}
@@ -116,6 +178,14 @@
     {% endif %}
   </div>
 
+  <footer class="footer mt-auto py-1 bg-body-tertiary text-center sticky-bottom">
+    <div class="container">
+      <span class="text-body-secondary text-center text-white"> 1% idea and 99% powered by chatGPT. Chat
+        <a href="https://t.me/medivaliverse" target="_blank" rel="noopener noreferrer"> https://t.me/medivaliverse </a>
+        for any issues or
+        feedback </span>
+    </div>
+  </footer>
   <!-- Bootstrap JS CDN -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

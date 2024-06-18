@@ -7,7 +7,8 @@
   <title>Google Arcade Facilitator Tracker</title>
   <!-- Bootstrap CSS CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sticky-footer/">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sticky-footer/">\
+  <link rel="icon" type="image/x-icon" href="https://i.ibb.co.com/sVMngs3/arcade-email-mobile-header-transparent.png">
   <style>
     /* Additional custom styles here */
     html,
@@ -24,6 +25,8 @@
 
     .container {
       flex: 1;
+      color: #333;
+      margin: 0 auto;
     }
 
     .btn-start {
@@ -47,14 +50,92 @@
     .footer a {
       color: white;
     }
+
+    h3 {
+      font-weight: normal;
+    }
+
+    #countdown {
+      margin-top: 0;
+    }
+
+    ul#fixthis {
+      padding-inline-start: 0;
+    }
+
+    li {
+      display: inline-block;
+      list-style-type: none;
+      padding: 1em;
+      text-transform: uppercase;
+    }
+
+    li span {
+      display: block;
+      font-size: 3.5rem;
+    }
   </style>
+
+  <script>
+    (function () {
+      const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
+
+      let today = new Date(),
+        dd = String(today.getDate()).padStart(2, "0"),
+        mm = String(today.getMonth() + 1).padStart(2, "0"),
+        yyyy = today.getFullYear(),
+        nextYear = yyyy,
+        dayMonth = "07/15/",
+        xDay = dayMonth + yyyy;
+
+      today = mm + "/" + dd + "/" + yyyy;
+      if (today > xDay) {
+        xDay = dayMonth + nextYear;
+      }
+      //end
+
+      const countDown = new Date(xDay).getTime(),
+        x = setInterval(function () {
+
+          const now = new Date().getTime(),
+            distance = countDown - now;
+
+          document.getElementById("days").innerText = Math.floor(distance / (day)),
+            document.getElementById("hours").innerText = Math.floor((distance % (day)) / (hour)),
+            document.getElementById("minutes").innerText = Math.floor((distance % (hour)) / (minute)),
+            document.getElementById("seconds").innerText = Math.floor((distance % (minute)) / second);
+
+          if (distance < 0) {
+            document.getElementById("days").innerText = "00"
+            document.getElementById("hours").innerText = "00"
+            document.getElementById("minutes").innerText = "00"
+            document.getElementById("seconds").innerText = "00"
+            clearInterval(x);
+          }
+        }, 0)
+    }());
+  </script>
 </head>
 
 <body>
   <div class="container">
     <img src="https://i.ibb.co.com/sVMngs3/arcade-email-mobile-header-transparent.png" alt=""
       class="d-block mx-auto mb-4" id="arcade_logo">
-    <h2 class="text-center mb-4">Google Arcade Facilitator Tracker</h2>
+    <h2 class="text-center mb-2" id="headline-title">Google Arcade Facilitator</h2>
+    <h3 class="text-center mb-0"> Tracker & Countdown</h3>
+
+    <div id="countdown" class="text-center">
+      <ul id="fixthis">
+        <li><span id="days"></span>days</li>
+        <li><span id="hours"></span>Hours</li>
+        <li><span id="minutes"></span>Minutes</li>
+        <li><span id="seconds"></span>Seconds</li>
+      </ul>
+    </div>
+
     <form method="post" enctype="application/x-www-form-urlencoded">
       <div class="mb-3">
         <label for="input_public_profile" class="form-label">Qwiklabs Public Profile</label>
@@ -107,7 +188,11 @@
         Total Points = {{ cloud_points + ai_points }} </br>
         {% endif %}
 
-        {{ tier_result }}
+        {{ tier_result }} <br>
+
+        More info about prize see this <a
+          href="https://www.googlecloudcommunity.com/gc/Learning-Forums/Understanding-The-Arcade-Milestones-and-Prize-Redemption-Rules/td-p/757623"
+          target="_blank" rel="noopener noreferrer">link</a>
       </div>
     </div>
     {% endfor %}

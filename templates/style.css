@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+:root {
+  --smaller: .75;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  padding-top: 50px;
+}
+
+.container {
+  flex: 1;
+}
+
+.btn-start {
+  width: 100%;
+}
+
+#cloudResults,
+#aiResults {
+  margin-top: 20px;
+}
+
+#arcade_logo {
+  width: 10vw;
+}
+
+.footer {
+  background-color: #007BFF;
+  padding: 1rem 0;
+}
+
+.footer a {
+  color: white;
+}
+
+li {
+  display: inline-block;
+  font-size: 1.5em;
+  list-style-type: none;
+  padding: 1em;
+  text-transform: uppercase;
+}
+
+li span {
+  display: block;
+  font-size: 4.5rem;
+}
+
+.emoji {
+  display: none;
+  padding: 1rem;
+}
+
+.emoji span {
+  font-size: 4rem;
+  padding: 0 .5rem;
+}

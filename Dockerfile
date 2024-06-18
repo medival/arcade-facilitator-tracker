@@ -1,5 +1,7 @@
 FROM python:3.11.9-bullseye
 
+ENV TZ="Asia/Jakarta"
+
 RUN apt update 
 
 WORKDIR /app

@@ -138,7 +138,22 @@
 
     <form method="post" enctype="application/x-www-form-urlencoded">
       <div class="mb-3">
-        <label for="input_public_profile" class="form-label">Qwiklabs Public Profile</label>
+        <label for="input_public_profile" class="form-label">
+          Qwiklabs Public Profile
+          ・ <a href="https://www.cloudskillsboost.google/profile/paths" target="_blank" rel="noopener noreferrer"> How
+            to get
+            public profile </a>
+          ・
+          <a href="https://rsvp.withgoogle.com/events/arcade-fasilitator-id/silabus" target="_blank"
+            rel="noopener noreferrer">Full silabus</a>
+          ・
+          <a href="https://rsvp.withgoogle.com/events/arcade-fasilitator-id/sistem-poin" target="_blank"
+            rel="noopener noreferrer">How to calculate points manually</a>
+          ・
+          <a href="https://www.googlecloudcommunity.com/gc/Learning-Forums/Understanding-The-Arcade-Milestones-and-Prize-Redemption-Rules/td-p/757623"
+            target="_blank" rel="noopener noreferrer">More info about prize</a>
+        </label>
+
         <input type="text" class="form-control" id="input_public_profile" name="profileUrl" required="required"
           placeholder="https://www.cloudskillsboost.google/public_profiles/"></input>
       </div>
@@ -176,23 +191,23 @@
         {% endif %}
 
         {% if track_bonus_points != 0 and ai_bonus_points != 0 and cloud_bonus_points !=0 %}
+        Bonus Track Points = 5.0 </br>
         Total Points: {{ cloud_points + ai_points + ai_bonus_points + cloud_bonus_points + track_bonus_points }} </br>
 
         {% elif track_bonus_points == 0 and ai_bonus_points == 4.0 and cloud_bonus_points == 0 %}
+        Bonus Track Points = 0 </br>
         Total Points: {{ cloud_points + ai_points + ai_bonus_points + cloud_bonus_points }} </br>
 
         {% elif track_bonus_points == 0 and ai_bonus_points == 0 and cloud_bonus_points == 2.0 %}
+        Bonus Track Points = 0 </br>
         Total Points: {{ cloud_points + ai_points + ai_bonus_points + cloud_bonus_points }} </br>
 
         {% else %}
+        Bonus Track Points = 0 </br>
         Total Points = {{ cloud_points + ai_points }} </br>
         {% endif %}
 
         {{ tier_result }} <br>
-
-        More info about prize see this <a
-          href="https://www.googlecloudcommunity.com/gc/Learning-Forums/Understanding-The-Arcade-Milestones-and-Prize-Redemption-Rules/td-p/757623"
-          target="_blank" rel="noopener noreferrer">link</a>
       </div>
     </div>
     {% endfor %}
